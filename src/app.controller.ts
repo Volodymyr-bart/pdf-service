@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { AppService } from './app.service';
 
@@ -6,23 +6,44 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-  @Get('invoice')
-  async generateInvoice(@Res() res: Response, @Query() query: any) {
+  @Post('invoice')
+  async generateInvoice(
+    @Res() res: Response,
+    @Body()
+    body: {
+      customerName: string;
+      items: { name: string; quantity: number; price: number }[];
+    },
+  ) {
     const data = {
-      customerName: query.customerName,
+      customerName: body.customerName,
       date: new Date().toISOString().split('T')[0],
-      items: [
-        { name: 'Item 1', quantity: 1, price: 100 },
-        { name: 'Item 2', quantity: 2, price: 200 },
-      ],
+      items: body.items,
       total: 500,
     };
 
     const pdfBuffer = await this.appService.generateInvoice(data);
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=invoice.pdf');
+    res.end(pdfBuffer);
+  }
+  @Post('invoice-base64')
+  async generateInvoiceTest(
+    @Res() res: Response,
+    @Body()
+    body: {
+      customerName: string;
+      items: { name: string; quantity: number; price: number }[];
+    },
+  ) {
+    const data = {
+      customerName: body.customerName,
+      date: new Date().toISOString().split('T')[0],
+      items: body.items,
+      total: 500,
+    };
+
+    const pdfBuffer = await this.appService.generateInvoiceBase64(data);
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename=invoice.pdf');
     res.end(pdfBuffer);
