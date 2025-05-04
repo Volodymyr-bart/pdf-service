@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nest-app:
+    build: .
+    ports:
+      - '10300:10300'
+    restart: always
