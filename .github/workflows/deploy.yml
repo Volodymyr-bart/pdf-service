@@ -27,5 +27,6 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /home/volodymyr/projects/backend/pdf
             docker compose down
+            docker system prune -af
             docker compose up --build -d
           EOF
