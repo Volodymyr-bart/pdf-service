@@ -23,9 +23,9 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
-      - name: Copy files to server
-        run: |
-          rsync -avz --exclude=node_modules --exclude=.git ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/volodymyr/projects/backend/pdf
+      # - name: Copy files to server
+      #   run: |
+      #     rsync -avz --exclude=node_modules --exclude=.git ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/volodymyr/projects/backend/pdf
 
       - name: Build and run Docker on server
         run: |
