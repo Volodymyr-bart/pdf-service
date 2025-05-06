@@ -1,8 +1,8 @@
-version: '3'
-services:
-  pdf-services:
-    build: .
-    container_name: pdf-services
-    ports:
-      - '10300:10300'
-    restart: always
+  version: '3'
+  services:
+    pdf-services:
+      build: .
+      container_name: pdf-services
+      ports:
+        - '10300:10300'
+      restart: always

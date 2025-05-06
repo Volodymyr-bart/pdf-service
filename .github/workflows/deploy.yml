@@ -29,7 +29,7 @@ jobs:
 
       - name: Build and run Docker on server
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          ssh -tt ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /home/volodymyr/projects/backend/pdf
             docker compose down
             docker system prune -af
