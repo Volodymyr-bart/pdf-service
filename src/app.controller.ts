@@ -9,6 +9,10 @@ export class AppController {
   async getHello() {
     return 'Hello World!';
   }
+  @Get("/hello")
+  async getHelloNew() {
+    return 'Hello World new!';
+  }
 
   @Post('invoice')
   async generateInvoice(
