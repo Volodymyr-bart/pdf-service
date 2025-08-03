@@ -1,4 +1,4 @@
-name: Build, Push and Deploy to Ubuntu Server V2
+name: Build, Push and Deploy to Ubuntu Server М
 
 on:
   # push:
@@ -58,10 +58,10 @@ jobs:
             # echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             # Завантажуємо останню версію образу
-            docker-compose pull
+            docker compose pull
             
             # Перезапускаємо контейнер з новим образом
-            docker-compose up -d --force-recreate
+            docker compose up -d --force-recreate
             
             # Очищуємо старі, невикористовувані образи (безпечніше ніж prune -af)
             docker image prune -f
