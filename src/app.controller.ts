@@ -14,6 +14,11 @@ export class AppController {
     return 'Hello World new!';
   }
 
+  @Get("/hello")
+  async getTest() {
+    return 'Hello World TEST, great!';
+  }
+
   @Post('invoice')
   async generateInvoice(
     @Res() res: Response,
