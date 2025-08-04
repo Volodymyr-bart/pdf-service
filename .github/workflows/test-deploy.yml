@@ -1,4 +1,4 @@
-name: Build, Push and Deploy to Ubuntu Server М
+name: Build, Push and Deploy to Ubuntu Server V3
 
 on:
   # push:
