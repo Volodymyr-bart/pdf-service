@@ -65,8 +65,9 @@ jobs:
             
             # --- НАДІЙНА АВТЕНТИФІКАЦІЯ ---
             echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
+            
+            docker stop $(docker ps -q --filter ancestor=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }})
+            docker image prune -f
             docker compose pull
             docker compose up -d
-            docker image prune -f
           EOF
