@@ -14,7 +14,7 @@ export class AppController {
     return 'Hello World new!';
   }
 
-  @Get("/hello")
+  @Get("/test")
   async getTest() {
     return 'Hello World TEST, great!';
   }

@@ -63,11 +63,15 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd /home/volodymyr/projects/backend/pdf
             
-            # --- НАДІЙНА АВТЕНТИФІКАЦІЯ ---
+            # 1. Автентифікація (це залишається)
             echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             
-            docker stop $(docker ps -q --filter ancestor=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }})
-            docker image prune -f
+            # 2. Завантажуємо новий образ
             docker compose pull
+            
+            # 3. Перезапускаємо сервіс. Docker Compose сам зупинить і видалить старий контейнер
             docker compose up -d
+            
+            # 4. (Опціонально) Очищуємо старі, невикористовувані образи, що залишились
+            docker image prune -f
           EOF
