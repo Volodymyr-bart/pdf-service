@@ -16,7 +16,7 @@ export class AppController {
 
   @Get("/test")
   async getTest() {
-    return 'Hello World TEST, great!';
+    return 'Пробую!';
   }
 
   @Post('invoice')
@@ -40,6 +40,7 @@ export class AppController {
     res.setHeader('Content-Disposition', 'attachment; filename=invoice.pdf');
     res.end(pdfBuffer);
   }
+
   @Post('invoice-base64')
   async generateInvoiceTest(
     @Res() res: Response,
@@ -61,4 +62,6 @@ export class AppController {
     res.setHeader('Content-Disposition', 'attachment; filename=invoice.pdf');
     res.end(pdfBuffer);
   }
+    
+
 }
