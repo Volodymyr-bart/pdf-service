@@ -14,9 +14,14 @@ export class AppController {
     return 'Hello World new!';
   }
 
+  @Get("/test-new")
+  async getTestNEW() {
+    return 'Пробую! цей роут';
+  }
+
   @Get("/test")
   async getTest() {
-    return 'Пробую!';
+    return 'Пробую! ';
   }
 
   @Post('invoice')
