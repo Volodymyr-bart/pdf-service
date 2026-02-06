@@ -1,9 +1,9 @@
 name: Build, Push and Deploy to Ubuntu Server V5 latest
 
 on:
-  push:
-    branches: [ "main" ] # Рекомендую увімкнути для автоматизації
-  workflow_dispatch: # Можливість ручного запуску
+  #push:
+    #branches: [ "main" ] 
+  workflow_dispatch: 
 
 jobs:
   build-and-push:

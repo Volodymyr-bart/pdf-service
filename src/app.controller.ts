@@ -9,15 +9,6 @@ export class AppController {
   async getHello() {
     return 'Hello World!';
   }
-  @Get("/hello")
-  async getHelloNew() {
-    return 'Hello World new!';
-  }
-
-  @Get("/test-new")
-  async getTestNEW() {
-    return 'Пробую! цей роут';
-  }
 
   @Get("/test")
   async getTest() {
